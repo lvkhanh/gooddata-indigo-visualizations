@@ -1218,5 +1218,36 @@ describe('chartOptionsBuilder', () => {
                 expect(tooltip).toBe(expectedTooltip);
             });
         });
+
+        describe('in usecase of stacked area chart', () => {
+            it('should assign stacking normal', () => {
+                const chartOptions = generateChartOptions(fixtures.areaChartWith3MetricsAndViewByAttribute, { type: 'area' });
+                expect(chartOptions.stacking).toBe('normal');
+            });
+
+            it('should disable stacking by config', () => {
+                const chartOptions = generateChartOptions(
+                    fixtures.areaChartWith3MetricsAndViewByAttribute,
+                    {
+                        type: 'area',
+                        stacking: false
+                    }
+                );
+
+                expect(chartOptions.stacking).toBeNull();
+            });
+
+            it('should enable stacking by config', () => {
+                const chartOptions = generateChartOptions(
+                    fixtures.areaChartWith3MetricsAndViewByAttribute,
+                    {
+                        type: 'area',
+                        stacking: true
+                    }
+                );
+
+                expect(chartOptions.stacking).toBe('normal');
+            });
+        });
     });
 });
