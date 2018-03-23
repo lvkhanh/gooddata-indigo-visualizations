@@ -8,12 +8,7 @@ const AREA_TEMPLATE = {
     },
     plotOptions: {
         area: {
-            lineColor: '#666666',
-            lineWidth: 1,
-            marker: {
-                lineWidth: 1,
-                lineColor: '#666666'
-            }
+            lineWidth: 1
         },
         series: {
             marker: {
@@ -21,7 +16,7 @@ const AREA_TEMPLATE = {
                 radius: 4.5
             },
             lineWidth: LINE_WIDTH,
-            fillOpacity: 0.3,
+            fillOpacity: 0.6,
             states: {
                 hover: {
                     lineWidth: LINE_WIDTH + 1

@@ -2,6 +2,7 @@
 import { pick } from 'lodash';
 import { RIGHT } from './PositionTypes';
 import { PIE_CHART } from '../../VisualizationTypes';
+import { isAreaChart, isPieChart } from '../../utils/common';
 
 export const DEFAULT_LEGEND_CONFIG = {
     enabled: true,
@@ -12,10 +13,12 @@ export function shouldLegendBeEnabled(chartOptions) {
     const seriesLength = chartOptions.data.series.length;
     // More than one measure or stackedBy more than one category
     const hasMoreThanOneSeries = seriesLength > 1;
-    const isStacked = !!chartOptions.stacking;
+    let isStacked = !!chartOptions.stacking;
     const isPieChartWithMoreThanOneCategory =
-        (chartOptions.type === PIE_CHART && chartOptions.data.series[0].data.length > 1);
-
+        (isPieChart(chartOptions.type) && chartOptions.data.series[0].data.length > 1);
+    if (isAreaChart(chartOptions.type)) {
+        isStacked = !!chartOptions.data.stackByAttribute;
+    }
     return hasMoreThanOneSeries || isPieChartWithMoreThanOneCategory || isStacked;
 }
 

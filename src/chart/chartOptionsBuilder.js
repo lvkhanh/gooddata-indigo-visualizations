@@ -533,7 +533,8 @@ export function getChartOptions(
         }),
         data: {
             series,
-            categories
+            categories,
+            stackByAttribute
         },
         actions: {
             tooltip: generateTooltipFn(viewByAttribute, type)
